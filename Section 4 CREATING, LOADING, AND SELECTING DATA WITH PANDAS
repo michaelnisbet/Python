@@ -1,0 +1,438 @@
+#CodeAcademy 
+#Python 
+# Analyze Data with Python
+
+
+#Introduction to Numpy
+#Statistics For Numpy
+#CREATING, LOADING, AND SELECTING DATA WITH PANDAS
+#Importing the Pandas Module
+
+#create a dataframe 1
+import codecademylib
+import pandas as pd
+
+df1 = pd.DataFrame({
+  'Product ID': [1, 2, 3, 4],
+  'Product Name' : ['t-shirt', 't-shirt', 'skirt', 'skirt'],
+  'Color' : ['blue','green', 'red','black']
+})
+
+print(df1)
+
+#create a dataframe II
+import codecademylib
+import pandas as pd
+
+df2 = pd.DataFrame([
+  [1, 'San Diego', 100],
+  [2, 'Los Angeles', 120],
+  [3, 'San Francisco', 90],
+  [4, 'Sacramento', 115]
+],
+  columns=[
+    'Store ID', 'Location', 'Number of Employees'
+  ])
+
+print(df2)
+
+#Loading and saving CSV files 
+import codecademylib
+import pandas as pd
+
+df = pd.read_csv('sample.csv')
+print(df)
+
+#Inspect a DataaFrame
+import codecademylib
+import pandas as pd
+
+df = pd.read_csv('imdb.csv')
+
+print(df.head())
+
+print(df.info())
+
+#select columns
+import codecademylib
+import pandas as pd
+
+df = pd.DataFrame([
+  ['January', 100, 100, 23, 100],
+  ['February', 51, 45, 145, 45],
+  ['March', 81, 96, 65, 96],
+  ['April', 80, 80, 54, 180],
+  ['May', 51, 54, 54, 154],
+  ['June', 112, 109, 79, 129]],
+  columns=['month', 'clinic_east',
+           'clinic_north', 'clinic_south',
+           'clinic_west']
+)
+
+clinic_north = df.clinic_north
+
+print(type(clinic_north))
+print(type(df))
+
+print(clinic_north)
+print(df)
+
+#selecting Multiple columns
+import codecademylib
+import pandas as pd
+
+df = pd.DataFrame([
+  ['January', 100, 100, 23, 100],
+  ['February', 51, 45, 145, 45],
+  ['March', 81, 96, 65, 96],
+  ['April', 80, 80, 54, 180],
+  ['May', 51, 54, 54, 154],
+  ['June', 112, 109, 79, 129]],
+  columns=['month', 'clinic_east',
+           'clinic_north', 'clinic_south',
+           'clinic_west']
+)
+
+clinic_north_south = df[['clinic_north', 'clinic_south']]
+print(type(clinic_north_south))
+print(clinic_north_south)
+
+
+#Select Rows
+import codecademylib
+import pandas as pd
+
+df = pd.DataFrame([
+  ['January', 100, 100, 23, 100],
+  ['February', 51, 45, 145, 45],
+  ['March', 81, 96, 65, 96],
+  ['April', 80, 80, 54, 180],
+  ['May', 51, 54, 54, 154],
+  ['June', 112, 109, 79, 129]],
+  columns=['month', 'clinic_east',
+           'clinic_north', 'clinic_south',
+           'clinic_west'])
+
+march = df.iloc[2]
+print(march)
+
+#Selecting Multiple Rows
+
+import codecademylib
+import pandas as pd
+
+df = pd.DataFrame([
+  ['January', 100, 100, 23, 100],
+  ['February', 51, 45, 145, 45],
+  ['March', 81, 96, 65, 96],
+  ['April', 80, 80, 54, 180],
+  ['May', 51, 54, 54, 154],
+  ['June', 112, 109, 79, 129]],
+  columns=['month', 'clinic_east',
+           'clinic_north', 'clinic_south',
+           'clinic_west']
+)
+
+april_may_june = df[-3:]
+print(april_may_june)
+
+
+#Select Rows with Logic 1
+import codecademylib
+import pandas as pd
+
+df = pd.DataFrame([
+  ['January', 100, 100, 23, 100],
+  ['February', 51, 45, 145, 45],
+  ['March', 81, 96, 65, 96],
+  ['April', 80, 80, 54, 180],
+  ['May', 51, 54, 54, 154],
+  ['June', 112, 109, 79, 129]],
+  columns=['month', 'clinic_east',
+           'clinic_north', 'clinic_south',
+           'clinic_west'])
+
+january = df[df.month == 'January']
+print(january)
+
+
+#Select Rows with Logic
+import codecademylib
+import pandas as pd
+
+df = pd.DataFrame([
+  ['January', 100, 100, 23, 100],
+  ['February', 51, 45, 145, 45],
+  ['March', 81, 96, 65, 96],
+  ['April', 80, 80, 54, 180],
+  ['May', 51, 54, 54, 154],
+  ['June', 112, 109, 79, 129]],
+  columns=['month', 'clinic_east',
+           'clinic_north', 'clinic_south',
+           'clinic_west'])
+march_april = df[(df.month == 'March')|(df.month == 'April')]
+print(march_april)
+
+#Select Rows with Logic III
+import codecademylib
+import pandas as pd
+
+df = pd.DataFrame([
+  ['January', 100, 100, 23, 100],
+  ['February', 51, 45, 145, 45],
+  ['March', 81, 96, 65, 96],
+  ['April', 80, 80, 54, 180],
+  ['May', 51, 54, 54, 154],
+  ['June', 112, 109, 79, 129]],
+  columns=['month', 'clinic_east',
+           'clinic_north', 'clinic_south',
+           'clinic_west'])
+
+january_february_march = df[df.month.isin(['January', 'February', 'March'])]
+print(january_february_march)
+
+#Setting indices
+import codecademylib
+import pandas as pd
+
+df = pd.DataFrame([
+  ['January', 100, 100, 23, 100],
+  ['February', 51, 45, 145, 45],
+  ['March', 81, 96, 65, 96],
+  ['April', 80, 80, 54, 180],
+  ['May', 51, 54, 54, 154],
+  ['June', 112, 109, 79, 129]],
+  columns=['month', 'clinic_east',
+           'clinic_north', 'clinic_south',
+           'clinic_west']
+)
+
+df2 = df.loc[[1, 3, 5]]
+
+print(df2)
+
+df3 = df2.reset_index(drop=True, inplace=True)
+
+print(df3)
+
+REview
+
+import codecademylib
+import pandas as pd
+
+orders = pd.read_csv('shoefly.csv')
+#first few lines
+print(orders.loc[:4])
+#one column
+emails = orders['email']
+print(emails)
+#Selecting specific row
+frances_palmer = orders[(orders.first_name=='Frances') & (orders.last_name == 'Palmer')]
+
+print(frances_palmer)
+#select based on filter
+comfy_shoes = orders[orders.shoe_type.isin(['clogs','boots','ballet flats'])]
+
+print(comfy_shoes)
+
+#Adding a Column
+import codecademylib
+import pandas as pd
+
+df = pd.DataFrame([
+  [1, '3 inch screw', 0.5, 0.75],
+  [2, '2 inch nail', 0.10, 0.25],
+  [3, 'hammer', 3.00, 5.50],
+  [4, 'screwdriver', 2.50, 3.00]
+],
+  columns=['Product ID', 'Description', 'Cost to Manufacture', 'Price']
+)
+
+# Add columns here
+df['Sold in Bulk?'] = ['Yes', 'Yes', 'No', 'No']
+print(df)
+
+#Adding a Column II
+
+import codecademylib
+import pandas as pd
+
+df = pd.DataFrame([
+  [1, '3 inch screw', 0.5, 0.75],
+  [2, '2 inch nail', 0.10, 0.25],
+  [3, 'hammer', 3.00, 5.50],
+  [4, 'screwdriver', 2.50, 3.00]
+],
+  columns=['Product ID', 'Description', 'Cost to Manufacture', 'Price']
+)
+
+# Add columns here
+df['Is taxed?'] = 'Yes'
+print(df)
+
+#Adding A Column III
+import codecademylib
+import pandas as pd
+
+df = pd.DataFrame([
+  [1, '3 inch screw', 0.5, 0.75],
+  [2, '2 inch nail', 0.10, 0.25],
+  [3, 'hammer', 3.00, 5.50],
+  [4, 'screwdriver', 2.50, 3.00]
+],
+  columns=['Product ID', 'Description', 'Cost to Manufacture', 'Price']
+)
+
+# Add column here
+df['Margin']= df.Price - df['Cost to Manufacture']
+print(df)
+
+#Performing Colimn Operations
+import codecademylib
+from string import lower
+import pandas as pd
+
+df = pd.DataFrame([
+  ['JOHN SMITH', 'john.smith@gmail.com'],
+  ['Jane Doe', 'jdoe@yahoo.com'],
+  ['joe schmo', 'joeschmo@hotmail.com']
+],
+columns=['Name', 'Email'])
+
+# Add columns here
+df['Lowercase Name'] = df.[Name].apply(lower)
+print(df)
+
+#REviewing Lambda Function
+
+mylambda = lambda x: x[0] + x[-1]
+print(mylambda('sdfs'))
+
+print(mylambda('totally'))
+
+#REviewing Lambda Funcition: If Statements
+
+mylambda = lambda x : 'Welcome to BattleCity!' if x >= 13 else 'You must be over 13'
+
+print(mylambda(12))
+
+print(mylambda(13))
+
+print(mylambda(23))
+
+#Applying a Lambda to a Column
+import codecademylib
+import pandas as pd
+
+df = pd.read_csv('employees.csv')
+
+# Add columns here
+get_last_name = lambda x: x.split()[-1]
+df['last_name'] = df.name.apply(get_last_name)
+
+print(df)
+
+
+#Applying a Lambda to a Row
+import codecademylib
+import pandas as pd
+
+df = pd.read_csv('employees.csv')
+
+total_earned = lambda row: (row.hourly_wage * 40) + ((row.hourly_wage * 1.5) * (row.hours_worked - 40)) \
+	if row.hours_worked > 40 \
+  else row.hourly_wage * row.hours_worked
+  
+df['total_earned'] = df.apply(total_earned, axis = 1)
+
+print(df)
+#wrong answer
+'''df['total_earned'] = df.apply(lambda row: row['hourly_wage']*1.5*row['hours_worked'] if row['hours_worked'] > 40 else row['hourly_wage']*row['hours_worked'], axis=1)
+'''
+'''df['total_earned'] = df.apply(lambda row: row['hourly_wage']*1.5* (row['hours_worked'] - 40) + row['hourly_wage']*row['hours_worked'] if row['hours_worked'] > 40 else row['hourly_wage']*row['hours_worked'], axis=1)'''
+#wrong answer
+total_earned = lambda hours_worked, hourly_wage  : (hours_worked-40)*1.5*hourly_wage  + 40*hourly_wage  if hours_worked > 40 else hours_worked * hourly_wage 
+
+
+#Renaming Columns
+import codecademylib
+import pandas as pd
+
+df = pd.read_csv('imdb.csv')
+
+# Rename columns here
+df.columns = ['ID','Title', 'Category', 'Year Released','Rating']
+print(df)
+
+
+
+#Renaming Columns II
+import codecademylib
+import pandas as pd
+
+df = pd.read_csv('imdb.csv')
+
+# Rename columns here
+df.rename(columns={'name':'movie_title'}, inplace=True)
+print(df)
+
+import codecademylib
+import pandas as pd
+
+orders = pd.read_csv('shoefly.csv')
+
+print(orders.head(5))
+
+orders['shoe_source'] = orders.shoe_material.apply(lambda x: \
+                        	'animal' if x == 'leather'else 'vegan')
+
+orders['salutation'] = orders.apply(lambda row: \
+                                    'Dear Mr. ' + row['last_name']
+                                    if row['gender'] == 'male'
+                                    else 'Dear Ms. ' + row['last_name'],
+                                    axis=1)
+
+print(orders)
+
+#isvegan = lambda x : 'animal' if 'leather' in x else 'vegan'
+isvegan = lambda x : 'animal' if 'leather' == x else 'vegan'
+#print(isvegan('banna'))
+#print(isvegan('bannaleather'))
+orders['shoe_source'] = orders.shoe_material.apply(isvegan)
+
+print(orders.head(5))
+
+'''gretting = lambda x , y : 'Dear Mr. ' + y if x == 'Male' else 'Dear Ms. ' + y 
+
+orders['salutation'] = orders.gender.apply(gretting)
+
+'''
+
+
+import codecademylib
+import pandas as pd
+inventory = pd.read_csv('inventory.csv')
+#first 10 row
+#print(inventory.head(10))
+
+#Staten island only
+#staten_island = inventory[inventory.location == 'Staten Island']
+#print(staten_island)
+
+#brooklyn nad seeds
+#seed_request = inventory[(inventory.location == 'Brooklyn') & (inventory.product_type == 'seeds')]
+#print(seed_request)
+
+#in invenotry
+#inventory['in_stock'] = inventory.quantity.apply(lambda x: True if x == 0 else False, axis = 0 )
+inventory['in_stock'] = inventory.apply( lambda row: True if row.quantity > 0 else False, axis = 1)
+
+inventory['total_value'] = inventory.apply(lambda row: row.quantity * row.price, axis = 1)
+
+combine_lambda = lambda row: \
+    '{} - {}'.format(row.product_type,
+                     row.product_description)
+
+inventory['full_description'] = inventory.apply(combine_lambda, axis =1)                     
+
+print(inventory)

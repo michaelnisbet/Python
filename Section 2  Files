@@ -1,0 +1,157 @@
+
+#CodeAcademy 
+#Python 
+# Analyze Data with Python
+
+
+#Section 2 Files
+
+#reading a file
+with open('welcome.txt') as text_file:
+  text_data = text_file.read()
+print(text_data)
+
+
+#iterating Through Lines
+with open('how_many_lines.txt') as lines_doc:
+  for line in lines_doc.readlines():
+    print(line)
+
+
+#Reading a Line
+with open('just_the_first.txt') as first_line_doc:
+  first_line = first_line_doc.readline()
+  print(first_line)
+
+#writing a file
+with open("bad_bands.txt", "w") as bad_bands_doc:
+  bad_bands_doc.write('bobs')
+  
+  
+  #appending to a file
+
+with open('cool_dogs.txt', 'a') as cool_dogs_file:
+  cool_dogs_file.write('Air Buddy')
+
+ #What's with 'with'
+#close_this_file = open('fun_file.txt')
+
+with open('fun_file.txt') as close_this_file:
+  setup = close_this_file.readline()
+  punchline = close_this_file.readline()
+
+print(setup)
+
+#What is a csv file
+
+with open('logger.csv') as log_csv_file:
+  print(log_csv_file.read())
+
+#REading CSV File
+import csv
+with open('cool_csv.csv') as cool_csv_file:
+  cool_csv_dict = csv.DictReader(cool_csv_file)
+  for row in cool_csv_dict:
+    print(row)
+    
+    
+import csv
+
+with open('books.csv') as books_csv:
+  books_reader = csv.DictReader(books_csv, delimiter='@')
+  isbn_list = []
+  for row in books_reader:
+    #print(row['ISBN'])
+    isbn_list.append(row['ISBN'])
+    #print(row)
+    print(isbn_list)
+
+
+#writing a csv file
+access_log = [{'time': '08:39:37', 'limit': 844404, 'address': '1.227.124.181'}, {'time': '13:13:35', 'limit': 543871, 'address': '198.51.139.193'}, {'time': '19:40:45', 'limit': 3021, 'address': '172.1.254.208'}, {'time': '18:57:16', 'limit': 67031769, 'address': '172.58.247.219'}, {'time': '21:17:13', 'limit': 9083, 'address': '124.144.20.113'}, {'time': '23:34:17', 'limit': 65913, 'address': '203.236.149.220'}, {'time': '13:58:05', 'limit': 1541474, 'address': '192.52.206.76'}, {'time': '10:52:00', 'limit': 11465607, 'address': '104.47.149.93'}, {'time': '14:56:12', 'limit': 109, 'address': '192.31.185.7'}, {'time': '18:56:35', 'limit': 6207, 'address': '2.228.164.197'}]
+fields = ['time', 'address', 'limit']
+
+import csv
+
+with open('logger.csv', 'w') as logger_csv:
+  log_writer = csv.DictWriter(logger_csv, fieldnames=fields)
+  log_writer.writeheader()
+  for line in access_log:
+    log_writer.writerow(line)
+
+
+import csv
+
+with open('logger.csv', 'w') as logger_csv:
+  log_writer = csv.DictWriter(logger_csv, fieldnames=fields)
+  log_writer.writeheader()
+  for line in log_writer:
+    logwriter.writerow(line) 
+ 
+
+#REadomg a JSPM FILE
+import json
+with open('message_json') as message_json:
+  message = json.load(message_json)
+  print(message['text'])   
+  
+  
+  #writing a JSON File
+
+data_payload = [
+  {'interesting message': 'What is JSON? A web application\'s little pile of secrets.',
+   'follow up': 'But enough talk!'}
+]
+
+import json
+with open('data.json', 'w') as data_json:
+  json.dump(data_payload, data_json)
+  
+  #Hacking the Fender PRoject
+import csv
+
+password_file = []
+
+with open('passwords.csv') as password_csv:
+  password_row = csv.DictReader(password_csv)
+  for row in password_row:
+    #print(row)
+    #print(row['Username'])
+    password_file.append(row['Username'])
+
+print(password_file)
+
+with open ('compromised_user.txt', 'w') as compromised_user_file:
+  #compromised_user_file.write(str(password_file))
+  for name in password_file:
+    #print(name)
+    compromised_user_file.write(name)
+
+import json
+
+with open('boss_message.json', 'w') as boss_message:
+  boss_message_dict = {'recipient':'the boss', 'message':'Mission Success'}
+  json.dump(boss_message_dict, boss_message)
+
+with open('new_passwords.csv', 'w') as new_passwords_obj:
+  slash_null_sig = '''
+  _  _     ___   __  ____             
+/ )( \   / __) /  \(_  _)            
+) \/ (  ( (_ \(  O ) )(              
+\____/   \___/ \__/ (__)             
+ _  _   __    ___  __ _  ____  ____  
+/ )( \ / _\  / __)(  / )(  __)(    \ 
+) __ (/    \( (__  )  (  ) _)  ) D ( 
+\_)(_/\_/\_/ \___)(__\_)(____)(____/ 
+        ____  __     __   ____  _  _ 
+ ___   / ___)(  )   / _\ / ___)/ )( \
+(___)  \___ \/ (_/\/    \\___ \) __ (
+       (____/\____/\_/\_/(____/\_)(_/
+ __ _  _  _  __    __                
+(  ( \/ )( \(  )  (  )               
+/    /) \/ (/ (_/\/ (_/\             
+\_)__)\____/\____/\____/
+'''
+  new_passwords_obj.write(slash_null_sig)
+
+
